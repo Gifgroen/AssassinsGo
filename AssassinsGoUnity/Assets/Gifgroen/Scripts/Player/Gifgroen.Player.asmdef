@@ -1,7 +1,8 @@
 {
     "name": "Gifgroen.Player",
     "references": [
-        "GUID:c7c395b535548a04a8309fa3d78ccb7a"
+        "GUID:c7c395b535548a04a8309fa3d78ccb7a",
+        "GUID:75469ad4d38634e559750d17036d5f7c"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
