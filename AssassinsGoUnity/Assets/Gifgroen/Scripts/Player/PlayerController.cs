@@ -2,6 +2,7 @@
 using DG.Tweening;
 using DG.Tweening.Core;
 using DG.Tweening.Plugins.Options;
+using JetBrains.Annotations;
 
 namespace Gifgroen.Player
 {
@@ -11,6 +12,9 @@ namespace Gifgroen.Player
         [SerializeField] private Vector3 destination;
 
         [SerializeField] private float tileSizeMoveDistance = 2f;
+
+        [SerializeField] private bool isMoving = false;
+        
 #pragma warning restore 0649
 
         public Vector3 CurrentDestination => destination;
@@ -35,10 +39,18 @@ namespace Gifgroen.Player
             return Move(Vector3.right * tileSizeMoveDistance);
         }
 
-        private TweenerCore<Vector3, Vector3, VectorOptions> Move(Vector3 newPos, float duration = 0.32f)
+        [CanBeNull]
+        private TweenerCore<Vector3, Vector3, VectorOptions> Move(Vector3 newPos, float duration = 0.24f)
         {
+            if (isMoving)
+            {
+                return null;
+            }
+                
             destination = transform.position + newPos;
-            return transform.DOMove(destination, duration);
+            return transform.DOMove(destination, duration)
+                .OnStart(() => isMoving = true)
+                .OnComplete(() => isMoving = false);
         }
     }
 }

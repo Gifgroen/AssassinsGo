@@ -23,7 +23,7 @@ namespace Gifgroen.Player
                 return;
             }
 
-            var input = context.ReadValue<Vector2>();
+            Vector2 input = context.ReadValue<Vector2>();
             if (input.x != 0)
             {
                 if (input.x < 0f)
